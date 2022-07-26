@@ -18,7 +18,7 @@ test.describe("Folders and Labels", () => {
     await loginPage.goto(baseURL);
   });
 
-  test.skip("Create new folder", async ({ page }) => {
+  test("Create new folder", async ({ page }) => {
     const loginPage = new LoginPage(page);
     const inboxPage = new InboxPage(page);
     const dashboardPage = new DashboardPage(page);
@@ -32,7 +32,7 @@ test.describe("Folders and Labels", () => {
     await foldersAndLabelsPage.addFolder(data.folderName);
   });
 
-  test.skip("Create new label", async ({ page }) => {
+  test("Create new label", async ({ page }) => {
     const loginPage = new LoginPage(page);
     const inboxPage = new InboxPage(page);
     const dashboardPage = new DashboardPage(page);
@@ -46,7 +46,7 @@ test.describe("Folders and Labels", () => {
     await foldersAndLabelsPage.AddLabel(data.labelName);
   });
 
-  test.skip("Use folder colors", async ({ page }) => {
+  test("Use folder colors", async ({ page }) => {
     const loginPage = new LoginPage(page);
     const inboxPage = new InboxPage(page);
     const dashboardPage = new DashboardPage(page);
@@ -60,7 +60,7 @@ test.describe("Folders and Labels", () => {
     await foldersAndLabelsPage.useFolderColors();
   });
 
-  test.skip("Delete existing folder", async ({ page }) => {
+  test("Delete existing folder", async ({ page }) => {
     const loginPage = new LoginPage(page);
     const inboxPage = new InboxPage(page);
     const dashboardPage = new DashboardPage(page);
