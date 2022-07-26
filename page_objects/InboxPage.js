@@ -17,12 +17,18 @@ exports.InboxPage = class InboxPage {
     this.loadingPage = new LoadingPage(page);
   }
 
+  /**
+   * Method used in order to wait for the inbox page to load with several assertions implemented.
+   */
   async waitForPageToLoad() {
     await expect(this.page).toHaveURL(/.*inbox/);
     await expect(await this.welcomeImg).toBeVisible({ timeout: 10000 });
     await this.newMessageBtn.waitFor();
   }
 
+  /**
+   * Method used to click on the Settings button within the Inbox page.
+   */
   async clickSettingsBtn() {
     await this.settingsBtn.waitFor();
     await this.settingsBtn.click();

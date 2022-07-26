@@ -52,6 +52,10 @@ const config = {
       name: "chromium",
       use: {
         ...devices["Desktop Chrome"],
+        viewport: {
+          width: 1765,
+          height: 1200,
+        },
       },
     },
 

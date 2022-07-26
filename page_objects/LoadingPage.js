@@ -12,6 +12,9 @@ exports.LoadingPage = class LoadingPage {
     );
   }
 
+  /**
+   * Method used in order to wait for the Loading Proton Account page to disappear from the screen.
+   */
   async waitForLoading() {
     await expect(this.loading).not.toBeVisible({ timeout: 10000 });
   }

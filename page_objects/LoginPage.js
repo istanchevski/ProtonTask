@@ -17,11 +17,19 @@ exports.LoginPage = class LoginPage {
     this.loadingPage = new LoadingPage(page);
   }
 
+  /**
+   * Method used for opening specific web page.
+   * @param url - the url of the desired page
+   */
   async goto(url) {
     await this.page.goto(url);
     await expect(this.page).toHaveURL(/.*login/);
   }
 
+  /**
+   * Method used for entering username and password on the Login Page.
+   * @param username, password
+   */
   async inputUsernameAndPass(username, password) {
     await this.username.waitFor();
     await this.username.type(username);
@@ -29,12 +37,19 @@ exports.LoginPage = class LoginPage {
     await this.password.type(password);
   }
 
+  /**
+   * Method used for clicking on the Sign In button on the Login page.
+   */
   async clickSignInBtn() {
     await this.signInBtn.waitFor();
     await this.signInBtn.click();
     await expect(this.signInLoading).not.toBeVisible({ timeout: 10000 });
   }
 
+  /**
+   * Method used for entering username, password and clicking on the Sign In button.
+   * @param username, password
+   */
   async signIn(username, password) {
     await this.inputUsernameAndPass(username, password);
     await this.clickSignInBtn();
