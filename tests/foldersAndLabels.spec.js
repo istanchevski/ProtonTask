@@ -14,9 +14,9 @@ const password = process.env.PASSWORD;
 const baseUrl = process.env.BASE_URL;
 
 test.describe("Folders and Labels", () => {
-  test.beforeEach(async ({ page }) => {
+  test.beforeEach(async ({ page, baseURL }) => {
     const loginPage = new LoginPage(page);
-    await loginPage.goto(baseUrl);
+    await loginPage.goto(baseURL);
   });
 
   test("Create Folder", async ({ page }) => {
@@ -26,10 +26,8 @@ test.describe("Folders and Labels", () => {
     const dashboardPage = new DashboardPage(page);
     const foldersAndLabelsPage = new FoldersAndLabelsPage(page);
     await loginPage.signIn(username, password);
-    await loadingPage.waitForLoading();
     await inboxPage.waitForPageToLoad();
     await inboxPage.clickSettingsBtn();
-    await loadingPage.waitForLoading();
     await dashboardPage.waitForPageToLoad();
     await dashboardPage.clickFoldersAndLabelsBtn();
     await foldersAndLabelsPage.waitForPageToLoad();
@@ -42,12 +40,9 @@ test.describe("Folders and Labels", () => {
     const inboxPage = new InboxPage(page);
     const dashboardPage = new DashboardPage(page);
     const foldersAndLabelsPage = new FoldersAndLabelsPage(page);
-    await loginPage.inputUsernameAndPass(username, password);
-    await loginPage.clickSignInBtn();
-    await loadingPage.waitForLoading();
+    await loginPage.signIn(username, password);
     await inboxPage.waitForPageToLoad();
     await inboxPage.clickSettingsBtn();
-    await loadingPage.waitForLoading();
     await dashboardPage.waitForPageToLoad();
     await dashboardPage.clickFoldersAndLabelsBtn();
     await foldersAndLabelsPage.waitForPageToLoad();

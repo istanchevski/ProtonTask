@@ -6,12 +6,11 @@ const { LoginPage } = require("../page_objects/LoginPage.js");
 const { InboxPage } = require("../page_objects/InboxPage.js");
 const username = process.env.USERNAME;
 const password = process.env.PASSWORD;
-const baseUrl = process.env.BASE_URL;
 
 test.describe("Log In", () => {
-  test.beforeEach(async ({ page }) => {
+  test.beforeEach(async ({ page, baseURL }) => {
     const loginPage = new LoginPage(page);
-    await loginPage.goto(baseUrl);
+    await loginPage.goto(baseURL);
   });
 
   test("Successful log in", async ({ page }) => {
@@ -19,7 +18,6 @@ test.describe("Log In", () => {
     const loginPage = new LoginPage(page);
     const inboxPage = new InboxPage(page);
     await loginPage.signIn(username, password);
-    await loadingPage.waitForLoading();
     await inboxPage.waitForPageToLoad();
   });
 });

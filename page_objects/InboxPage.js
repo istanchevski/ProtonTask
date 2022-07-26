@@ -1,5 +1,6 @@
 // playwright-dev-page.js
 const { expect } = require("@playwright/test");
+const { LoadingPage } = require("./LoadingPage.js");
 
 exports.InboxPage = class InboxPage {
   /**
@@ -13,6 +14,7 @@ exports.InboxPage = class InboxPage {
     this.welcomeImg = page.locator(`//img[@alt="Welcome"]`);
     this.settingsBtn = page.locator(`//button[@title="Open settings menu"]`);
     this.goToSettingsOption = page.locator(`//*[text()="Go to settings"]`);
+    this.loadingPage = new LoadingPage(page);
   }
 
   async waitForPageToLoad() {
@@ -26,5 +28,6 @@ exports.InboxPage = class InboxPage {
     await this.settingsBtn.click();
     await this.goToSettingsOption.waitFor();
     await this.goToSettingsOption.click();
+    await this.loadingPage.waitForLoading();
   }
 };

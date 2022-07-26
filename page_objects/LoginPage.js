@@ -1,5 +1,6 @@
 // playwright-dev-page.js
 const { expect } = require("@playwright/test");
+const { LoadingPage } = require("./LoadingPage.js");
 
 exports.LoginPage = class LoginPage {
   /**
@@ -13,6 +14,7 @@ exports.LoginPage = class LoginPage {
     this.signInLoading = page.locator(
       `//span[@class="button-loader-container"]`
     );
+    this.loadingPage = new LoadingPage(page);
   }
 
   async goto(url) {
@@ -36,5 +38,6 @@ exports.LoginPage = class LoginPage {
   async signIn(username, password) {
     await this.inputUsernameAndPass(username, password);
     await this.clickSignInBtn();
+    await this.loadingPage.waitForLoading();
   }
 };
