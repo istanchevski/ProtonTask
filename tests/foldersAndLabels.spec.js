@@ -12,13 +12,13 @@ const username = process.env.USERNAME;
 const password = process.env.PASSWORD;
 const baseUrl = process.env.BASE_URL;
 
-test.describe("Folders and Labels", () => {
+test.describe("Folders and Labels test cases", () => {
   test.beforeEach(async ({ page, baseURL }) => {
     const loginPage = new LoginPage(page);
     await loginPage.goto(baseURL);
   });
 
-  test("Create new folder", async ({ page }) => {
+  test("1. Create new folder", async ({ page }) => {
     const loginPage = new LoginPage(page);
     const inboxPage = new InboxPage(page);
     const dashboardPage = new DashboardPage(page);
@@ -32,7 +32,7 @@ test.describe("Folders and Labels", () => {
     await foldersAndLabelsPage.addFolder(data.folderName);
   });
 
-  test("Create new label", async ({ page }) => {
+  test("2. Create new label", async ({ page }) => {
     const loginPage = new LoginPage(page);
     const inboxPage = new InboxPage(page);
     const dashboardPage = new DashboardPage(page);
@@ -46,7 +46,7 @@ test.describe("Folders and Labels", () => {
     await foldersAndLabelsPage.AddLabel(data.labelName);
   });
 
-  test("Use folder colors", async ({ page }) => {
+  test("3. Use folder colors", async ({ page }) => {
     const loginPage = new LoginPage(page);
     const inboxPage = new InboxPage(page);
     const dashboardPage = new DashboardPage(page);
@@ -60,7 +60,7 @@ test.describe("Folders and Labels", () => {
     await foldersAndLabelsPage.useFolderColors();
   });
 
-  test("Delete existing folder", async ({ page }) => {
+  test("4. Delete existing folder", async ({ page }) => {
     const loginPage = new LoginPage(page);
     const inboxPage = new InboxPage(page);
     const dashboardPage = new DashboardPage(page);
@@ -74,7 +74,7 @@ test.describe("Folders and Labels", () => {
     await foldersAndLabelsPage.deleteFolder("Test Folder");
   });
 
-  test("Delete existing label", async ({ page }) => {
+  test("5. Delete existing label", async ({ page }) => {
     const loginPage = new LoginPage(page);
     const inboxPage = new InboxPage(page);
     const dashboardPage = new DashboardPage(page);
