@@ -39,11 +39,18 @@ exports.FoldersAndLabelsPage = class FoldersAndLabelsPage {
     );
   }
 
+  /**
+   * Method used in order to wait for the Folders and Labels page to load with several assertions implemented.
+   */
   async waitForPageToLoad() {
     await expect(this.page).toHaveURL(/.*folders-labels/);
     await this.title.waitFor();
   }
 
+  /**
+   * Method used for adding new folder.
+   * @param folderName - the name of the new folder to be created.
+   */
   async addFolder(folderName) {
     await this.addFolderBtn.waitFor();
     await this.addFolderBtn.click();
@@ -59,6 +66,10 @@ exports.FoldersAndLabelsPage = class FoldersAndLabelsPage {
     ).toBeVisible();
   }
 
+  /**
+   * Method used for adding new label.
+   * @param labelName - the name of the new label to be created.
+   */
   async AddLabel(labelName) {
     await this.addLabelBtn.waitFor();
     await this.addLabelBtn.click();
@@ -74,6 +85,9 @@ exports.FoldersAndLabelsPage = class FoldersAndLabelsPage {
     ).toBeVisible();
   }
 
+  /**
+   * Method used to check the checkbox Use Folder Color if it is not already selected.
+   */
   async useFolderColors() {
     if (
       (await this.useFolderColorsCheckbox.isVisible({ timeout: 1000 })) == true
@@ -90,6 +104,10 @@ exports.FoldersAndLabelsPage = class FoldersAndLabelsPage {
     }
   }
 
+  /**
+   * Method used for deleting existing folder.
+   * @param folderName - the name of the folder to be deleted.
+   */
   async deleteFolder(folderName) {
     const folderDropdown = this.page.locator(
       `//*[text()="Folders"]//ancestor::div//following-sibling::ul/li[@title="${folderName}"]//button[@title="Open actions dropdown"]`
@@ -112,6 +130,10 @@ exports.FoldersAndLabelsPage = class FoldersAndLabelsPage {
     ).not.toBeVisible();
   }
 
+  /**
+   * Method used for deleting existing label.
+   * @param labelName - the name of the label to be deleted.
+   */
   async deleteLabel(labelName) {
     const labelDropdown = this.page.locator(
       `//*[text()="Labels"]//ancestor::table//span[text()="${labelName}"]//ancestor::tr//button[@title="Open actions dropdown"]`
